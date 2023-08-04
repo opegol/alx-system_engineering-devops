@@ -1,2 +1,2 @@
-0	string	 SCHOOL	 Type of school file
-!:mime School
+0	string	 SCHOOL	 School data
+!:mime School 
