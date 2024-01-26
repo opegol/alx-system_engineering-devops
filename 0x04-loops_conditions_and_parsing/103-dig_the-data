@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Parse an Apache log access file and groups visitors by IP and HTTP status
-# 	code, and displays this data
-#o	ordered from the greatest to the lowest number of occurrences
-awk '{print $1 " " $9}' apache-access.bin | sort | uniq -c |sort -nr
+# Parse an Apache log access file and group visitors by IP and HTTP status
+# code, and display this data.
+# Ordered from the greatest to the lowest number of occurrences
+awk '{print $1 " " $9}' apache-access.log | sort | uniq -c | sort -nr
