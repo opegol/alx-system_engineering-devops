@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Displays the content of the file /etc/passwd, using the while loop + IFS
+# and tells a story with it
+while IFS=':' read -r USERNAME PASSWORD U_ID G_ID INFO HOME_DIR SH; do
+	echo  "The user $USERNAME is part of the $G_ID gang, lives in"\
+		"$HOME_DIR and rides $SH. $U_ID's place is protiected"\
+		"by the passcode $PASSWORD, more info about the"\
+		"user here: $INFO"
+done < "/etc/passwd"
