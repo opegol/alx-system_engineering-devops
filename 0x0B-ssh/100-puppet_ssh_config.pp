@@ -1,6 +1,6 @@
 # Additing a config file in /.ssh/config using puppet.
 
-$pth ="/home/ubuntu/.ssh/config"
+$pth ="~/.ssh/config"
 $str = "Host *
 #   ForwardAgent no
 #   ForwardX11 no
