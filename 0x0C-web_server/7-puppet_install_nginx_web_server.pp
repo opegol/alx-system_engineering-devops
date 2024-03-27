@@ -27,7 +27,8 @@ exec { 'apt-update':
 
 # Install Nginx package
 package { 'nginx':
-  ensure => installed,
+  ensure   => installed,
+  provider => 'apt'
 }
 
 # Create directory and index.html file
