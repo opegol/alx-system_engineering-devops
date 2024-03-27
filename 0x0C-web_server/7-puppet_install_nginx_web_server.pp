@@ -16,7 +16,7 @@ $str = "server {
     }
 }"
 
-$str2 = '> /etc/nginx/sites-available/default'
+$str2 = "> /etc/nginx/sites-available/default"
 
 
 # Update package repositories
