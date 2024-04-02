@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Debug a docker run
+
+servPort=$(grep 'server_port' /var/www/pyclock/app/settings.txt)
+echo "$servPort"
+
+servPort=${servPort##*=}
+echo "$servPort"
+
+servPort=${servPort//'"'}
+echo "$servPort"
+
+export MYHTTPPORT=$servPort
+
+sudo /etc/init.d/apache2 reload

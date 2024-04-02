@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Install and configure HAproxy on "lb-01" server.
+
+apt-get install -y --no-install-recommends software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-2.0
+apt-get update
+apt-get install -y haproxy=2.0.\*
+
+echo "ENABLED=1">> /etc/default/haproxy
+mv /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.orig
+touch /etc/haproxy/haproxy.cfg
+
+printf %s "global
+	maxconn 4000
+	log /dev/log local0
+	user haproxy
+	group haproxy
+
+defaults
+	timeout connect 10s
+	timeout client 20s
+	timeout server 20s
+	log global
+	mode http
+	option httplog
+	retries 4
+
+frontend lb-01
+	bind 100.26.18.237:80
+	default_backend web_servers
+
+backend web_servers
+	balance roundrobin
+	cookie SERVERUSED insert indirect nocache
+	option httpchk HEAD /
+	default-server check maxconn 20
+	stats enable
+	stats uri /haproxy?stats
+	stats refresh 10s
+	server 501388-web-01 54.159.27.57:80 check
+	server 501388-web-02 3.89.155.109:80 check
+
+">> /etc/haproxy/haproxy.cfg
+
+service haproxy start
