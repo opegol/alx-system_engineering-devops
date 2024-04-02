@@ -16,7 +16,7 @@ $str = "server {
     }
 }"
 
-$str2 = '> /etc/nginx/sites-available/default'
+$str2 = "> /etc/nginx/sites-available/default"
 
 
 # Update package repositories
@@ -27,7 +27,8 @@ exec { 'apt-update':
 
 # Install Nginx package
 package { 'nginx':
-  ensure => installed,
+  ensure   => installed,
+  provider => 'apt'
 }
 
 # Create directory and index.html file
