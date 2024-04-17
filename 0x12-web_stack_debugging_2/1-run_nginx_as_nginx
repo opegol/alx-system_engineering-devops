@@ -3,12 +3,9 @@
 # nginx must be running as nginx user
 # nginx must be listening on all active IPs on port 8080
 # apt-get remove cannot be used
-if ! command -v nginx &> /dev/null; then
-    apt-get update
-    apt-get install -y nginx
-fi
-service nginx stop
+
 sed -i 's/^user\s\+.*$/user nginx;/' /etc/nginx/nginx.conf
 sed -i '/listen\s\+80;/c\    listen 8080;\n    listen [::]:8080;' /etc/nginx/sites-available/default
-
-service nginx start
+chmod 644 /etc/nginx/nginx.conf
+pkill apache2
+sudo -u nginx service nginx start
