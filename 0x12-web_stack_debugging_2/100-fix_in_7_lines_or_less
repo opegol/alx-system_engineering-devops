@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Making the fix for task1 short and sweet
-
-sed -i 's/^user\s\+.*$/user nginx;/' /etc/nginx/nginx.conf
-sed -i '/listen\s\+80;/c\    listen 8080;\n    listen [::]:8080;' /etc/nginx/sites-available/default
-chmod 644 /etc/nginx/nginx.conf
+sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+sed -i "s/80/8080/g" /etc/nginx/sites-available/defaulti
+chmod 664 /etc/nginx/nginx.conf
 pkill apache2
 sudo -u nginx service nginx start
