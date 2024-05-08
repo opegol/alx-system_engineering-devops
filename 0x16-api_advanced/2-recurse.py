@@ -27,7 +27,6 @@ def recurse(subreddit, hot_list=[], after="", count=0):
     except Exception:
         return None
 
-
     res = res.get("data")
     after = res.get("after")
     count += res.get("dist")
