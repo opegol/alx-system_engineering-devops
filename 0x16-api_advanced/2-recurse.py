@@ -7,7 +7,7 @@
 import requests
 
 
-def recurse(subreddit, page_list=[], after="", count=0):
+def recurse(subreddit, hot_list=[], after="", count=0):
     """Returns a list of titles of all hot posts for a given subreddit."""
     url = f"https://www.reddit.com/r/{subreddit}/hot/.json"
     headers = {
@@ -27,8 +27,8 @@ def recurse(subreddit, page_list=[], after="", count=0):
     after = res.get("after")
     count += res.get("dist")
     for child in res.get("children"):
-        page_list.append(child.get("data").get("title"))
+        hot_list.append(child.get("data").get("title"))
 
     if after is not None:
-        return recurse(subreddit, page_list, after, count)
-    return page_list
+        return recurse(subreddit, hot_list, after, count)
+    return hot_list
