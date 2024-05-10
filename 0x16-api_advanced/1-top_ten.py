@@ -27,4 +27,3 @@ def top_ten(subreddit):
     res = resi.get("data")
     for child in res.get("children"):
         print(child.get("data").get("title"))
-    
