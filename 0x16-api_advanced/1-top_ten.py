@@ -24,6 +24,7 @@ def top_ten(subreddit):
     except Exception:
         print("None")
         return
-    res = resi.get("data")
-    for child in res.get("children"):
-        print(child.get("data").get("title"))
+    res = res.get("data")
+    # for child in res.get("children"):
+    #    print(child.get("data").get("title"))
+    [print(child.get("data").get("title")) for child in res.get("children")]
