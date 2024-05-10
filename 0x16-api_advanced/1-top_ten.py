@@ -25,6 +25,5 @@ def top_ten(subreddit):
         print("None")
         return
     res = res.get("data")
-    # for child in res.get("children"):
-    #    print(child.get("data").get("title"))
-    [print(child.get("data").get("title")) for child in res.get("children")]
+    for child in res.get("children"):
+        print(child.get("data").get("title"))
