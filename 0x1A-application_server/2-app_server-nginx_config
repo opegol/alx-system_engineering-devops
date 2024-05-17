@@ -1,0 +1,21 @@
+# config file for Nginx to serve pages from the route /airbnb-onepage/
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    add_header X-Served-By 501388-web-01;
+    root   /var/www/html;
+    index  index.html index.htm;
+
+    server_name 54.159.27.57;
+
+    location = /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+    }
+
+    error_page 404 /404.html;
+    location /404 {
+      root /var/www/html;
+      internal;
+    }
+}
